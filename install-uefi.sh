@@ -18,8 +18,12 @@ echo root:password | chpasswd
 pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-headers inetutils dnsutils bash-completion openssh rsync os-prober nano netctl sudo dhcpcd mesa neofetch wget man git amd-ucode linux-lts linux-lts-headers avahi
 
 # install grub
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub_uefi --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
+
+# create the initial ramdisk for the kernel
+mkinitcpio -p linux
+mkinitcpio -p linux-lts
 
 # enable service
 systemctl enable NetworkManager
