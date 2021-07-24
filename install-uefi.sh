@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "\n[options]\nParallelDownloads = 8" >> /etc/pacman.conf
+echo -e "\n[options]\nParallelDownloads = 8" >> /etc/pacman.conf
 pacman -Syy reflector
 reflector -c Bangladesh --save /etc/pacman.d/mirrorlist
 ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime
@@ -15,7 +15,7 @@ echo "127.0.1.1 archlinux" >> /etc/hosts
 echo root:password | chpasswd
 
 # install package
-pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-headers inetutils dnsutils bash-completion openssh rsync os-prober nano netctl sudo dhcpcd mesa neofetch wget man git amd-ucode linux-lts linux-lts-headers avahi
+pacman -S --no grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-headers inetutils dnsutils bash-completion openssh rsync os-prober nano netctl sudo dhcpcd mesa neofetch wget man git amd-ucode linux-lts linux-lts-headers avahi
 
 # install grub
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub_uefi --recheck
@@ -47,7 +47,7 @@ mkswap /swapfile
 
 # backup /etc/fstab, add /swapfile to /etc/fstab
 cp /etc/fstab /etc/fstab.old
-echo "/swapfile none sw 0 0" | tee -a /etc/fstab
+echo -e "/swapfile none sw 0 0" | tee -a /etc/fstab
 
 printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
 
