@@ -36,5 +36,14 @@ usermod -aG idbmdran
 
 echo "idbmdran ALL=(ALL) ALL" >> /etc/sudoers.d/idbmdran
 
+# create swapfile
+fallocate -l 4G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+
+# backup /etc/fstab, add /swapfile to /etc/fstab
+cp /etc/fstab /etc/fstab.old
+echo "/swapfile none sw 0 0" | tee -a /etc/fstab
+
 printf "\e[1;32mDone! Type exit, umount -a and reboot.\e[0m"
 
