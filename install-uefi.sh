@@ -14,7 +14,7 @@ echo "127.0.1.1 archlinux" >> /etc/hosts
 echo root:password | chpasswd
 
 # install package
-pacman -S --no grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-headers inetutils dnsutils bash-completion openssh rsync os-prober nano netctl sudo dhcpcd mesa neofetch wget man git amd-ucode linux-lts linux-lts-headers avahi
+pacman -S grub efibootmgr networkmanager network-manager-applet dialog mtools dosfstools base-devel linux-headers inetutils dnsutils bash-completion openssh rsync os-prober nano netctl sudo dhcpcd mesa neofetch wget man git amd-ucode linux-lts linux-lts-headers avahi
 
 # install grub
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub_uefi --recheck
