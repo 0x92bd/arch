@@ -1,6 +1,5 @@
 #!/bin/bash
 
-echo -e "\n[options]\nParallelDownloads = 8" >> /etc/pacman.conf
 pacman -Syy reflector
 reflector -c Bangladesh --save /etc/pacman.d/mirrorlist
 ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime
